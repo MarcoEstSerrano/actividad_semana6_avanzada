@@ -120,7 +120,7 @@
                         } else {
                             resolve(numEdad); // Éxito
                         }
-                    }, 2000);
+                    }, 2000); //(esto son 2 segundos)
                 });
             }
 
@@ -128,32 +128,34 @@
             async function iniciarProceso() {
                 const nombre = document.getElementById('nombre').value;
                 const edad = document.getElementById('edad').value;
-                const Resultado = document.getElementById('resultado');
+                const resultado = document.getElementById('resultado');
 
-                // Ejecutamos el flujo con los datos que nos pasan
-                procesarFormulario(nombre, edad, async (edadValidada) => {
+                // Ejecutamos el flujo con los datos que nos pasan (nombre y edad)
+                procesarFormulario(nombre, edad, async (edadVerif) => {
                     try {
                         // El 'await' detiene la ejecución hasta que la promesa se resuelve 
-                        const edadFinal = await validarEdadAsync(edadValidada);
-
-                        let estatus = "";
+                        const edadFinal = await validarEdadAsync(edadVerif);
+                        //tomamos el dato que ahora es edadVerif y se lo pasamos a otra variable de nombre edadFinal
+                        let estado = "";
                         if (edadFinal >= 18) {
-                            estatus = "es Mayor de edad";
+                            estado = "es Mayor de edad";
                         } else {
-                            estatus = "es Menor de edad";
+                            estado = "es Menor de edad";
                         }
 
-                        // Manipulación dinámica del DOM usando Template Literals
-                        Resultado.innerHTML = `
+                        // Aqui podemos usar Template Literals para poder colocar strings con variables
+                        // el dato de "resultado" finalmente luego de ser modificado varias veces termina con esta modificación de estado
+                        resultado.innerHTML = `
                             <div class='success'>
                                 <strong>¡Validación Exitosa!</strong><br>
                                 Usuario: ${nombre}<br>
-                                Resultado: ${estatus}
+                                Resultado: ${estado}
                             </div>`;
 
                     } catch (error) {
                         // El 'catch' captura el 'reject' de la promesa
-                        Resultado.innerHTML = `<span class='error'>[Servidor] ${error}</span>`;
+                        resultado.innerHTML = `<span class='error'>[Servidor] ${error}</span>`;
+                        // si pasara algo muestra error en la barra de información por eso "resultado" entra aqui
                     }
                 });
             }
