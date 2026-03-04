@@ -2,7 +2,7 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>Validación Asíncrona - Estilo Azaustre</title>
+        <title>Validación Asíncrona de Usuario</title>
         <style>
             body {
                 font-family: sans-serif;
@@ -30,7 +30,6 @@
     <body>
 
         <h2>Validación de Usuario</h2>
-        <p>Inspirado en la explicación de Carlos Azaustre sobre Asincronía.</p>
 
         <form id="userForm">
             <input type="text" id="nombre" placeholder="Nombre de usuario"><br><br>
@@ -68,7 +67,7 @@
 
                         // Cláusula de cierre: Primero el error, como sugiere Carlos [00:06:04]
                         if (numEdad <= 0) {
-                            reject("La edad ingresada no es válida (debe ser > 0).");
+                            reject("La edad ingresada no es válida (debe ser mayor 0).");
                         } else {
                             resolve(numEdad); // Éxito
                         }
