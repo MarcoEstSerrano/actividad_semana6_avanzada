@@ -13,7 +13,9 @@
                 align-items: center;
             }
 
-            h2 { color: #333; }
+            h2 {
+                color: #333;
+            }
 
             form {
                 background: white;
@@ -42,7 +44,9 @@
                 font-weight: bold;
             }
 
-            button:hover { background-color: #0056b3; }
+            button:hover {
+                background-color: #0056b3;
+            }
 
 
             #resultado {
@@ -62,19 +66,19 @@
                 color: #555;
             }
 
-            .error { 
+            .error {
                 color: #d9534f;
                 font-weight:
                     bold;
             }
-            .success { 
+            .success {
                 color: #28a745;
                 font-weight:
-                    bold; 
+                    bold;
             }
-            .loading { 
+            .loading {
                 color: #007bff;
-                font-style: 
+                font-style:
                     italic;
             }
         </style>
@@ -152,12 +156,37 @@
                                 Resultado: ${estado}
                             </div>`;
 
+                        informarUsuario(nombre);
+
                     } catch (error) {
                         // El 'catch' captura el 'reject' de la promesa
                         resultado.innerHTML = `<span class='error'>[Servidor] ${error}</span>`;
                         // si pasara algo muestra error en la barra de información por eso "resultado" entra aqui
                     }
                 });
+            }
+
+            // Función para despedir al usuario usando .then() y .catch()
+            function informarUsuario(nombre) {
+                // Creamos una promesa rápida que informe
+                const promesaSaludo = new Promise((resolve, reject) => {
+                    if (nombre.trim() === "") {
+                        reject("No hay nombre para informar");
+                    } else {
+                        resolve(`¡Se ha procesado la consulta ${nombre}!`);
+                    }
+                });
+
+                //  Si fuera necesario usar .then() y .catch() aqui lo añadi ya que no lo vi tan necesario en el codigo principal.
+                promesaSaludo
+                        .then((mensaje) => {
+                            // Creamos un mensajito extra en la consola o un alert
+                            console.log("Respuesta enviada con éxito.");
+                            alert(mensaje);
+                        })
+                        .catch((error) => {
+                            console.error("Error en respuesta: " + error);
+                        });
             }
         </script>
     </body>
