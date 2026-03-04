@@ -52,7 +52,7 @@
                 callback(edad);
             }
 
-            // --- 2. LA PROMESA (El núcleo del video) ---
+            // LA PROMESA
             // Basado en el ejemplo de Carlos [00:05:24]: 
             // Usamos 'resolve' para el éxito y 'reject' para el error.
             function validarEdadAsync(edad) {
@@ -67,7 +67,7 @@
 
                         // Cláusula de cierre: Primero el error, como sugiere Carlos [00:06:04]
                         if (numEdad <= 0) {
-                            reject("La edad ingresada no es válida (debe ser mayor 0).");
+                            reject("La edad ingresada no es válida (debe ser mayor que cero).");
                         } else {
                             resolve(numEdad); // Éxito
                         }
